@@ -10,7 +10,7 @@ if(NOT GTest_FOUND)
     FetchContent_MakeAvailable(googletest)
     set(gtest_main_target gtest_main)
 else()
-    set(gtest_main_target GTEST::gtest_main)
+    set(gtest_main_target GTest::gtest_main)
 endif()
 
 include(GoogleTest)
