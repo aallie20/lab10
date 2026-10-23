@@ -24,7 +24,7 @@ Deck::~Deck() {
 delete[] m_cards;
 }
 
-Deck::Deck(const Deck &other) : m_cards{nullptr}, m_sizei{other.m_size}, m_next{other.m_next} {
+Deck::Deck(const Deck &other) : m_cards{nullptr}, m_size{other.m_size}, m_next{other.m_next} {
 
 m_cards = new Card[m_size];
 
@@ -76,6 +76,6 @@ Card Deck::deal() {
   return top;
 }
 
-bool Deck::empty() { return m_next >= m_size; }
+bool Deck::empty() const { return m_next >= m_size; }
 
-int Deck::remaining() { return m_size - m_next; }
+int Deck::remaining() const  { return m_size - m_next; }

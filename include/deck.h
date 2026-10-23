@@ -11,11 +11,17 @@
 /// The number of cards in a full deck.
 inline constexpr int deck_size = 52;
 
-// TODO: Write the class invariant here as a comment.
-//  Say what m_cards points to, what m_size is, and what range m_next may have.
+// Class invariant:
+// m_cards points to a dynamically allocated array of Card objects owned by
+// this Deck.
+// m_size is the number of cards in the array and is never negative.
+// m_next is the index of the next card to deal and always satisfies
+// 0 <= m_next && m_next <= m_size.
 //
-// TODO: Explain here what goes wrong if operator= omits the self-assignment
-//  check (d = d;).
+// The self-assignment check in operator= prevents a deck from deleting its
+// own array and then attempting to copy from that same deleted memory.
+// Without the check, d = d; would result in undefined behavior because the
+// source and destination are the same object.
 
 /// A deck of playing cards stored in a heap array.
 class Deck {
@@ -46,10 +52,10 @@ public:
   Card deal();
 
   /// @return true if every card has been dealt
-  bool empty();
+  bool empty() const;
 
   /// @return how many cards are left to deal
-  int remaining();
+  int remaining() const;
 
 private:
   Card *m_cards;
